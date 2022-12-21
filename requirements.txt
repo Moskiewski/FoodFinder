@@ -1,23 +1,23 @@
-1. Ja jako klient chcę móc wprowadzić kilka posiadnych składników żeby uzyskać danie
-- użytkownikm może podać maks 5 składników
+1.Jako klient chcę móc wprowadzić kilka posiadnych składników żeby uzyskać danie
+- użytkownik może podać maks 5 składników
 - składniki muszą być już wcześniej dodane
-- dla danych składników poiwnien byc jeden przepis
-- jesli brakuje jakiewgo skladnika appka podpowiada co mozna zrobic
+- dla danych składników pownien istnieć tylko jeden przepis
+- jeśli brakuje jakiegoś składnika appka podpowiada inny przepis, który można zrobic
 
 Happy path scenario:
 1. Odpalam apke (konsola)
-2. System wyswietlka pytanie z ilu sklanikow chcesz zrobic dana potrawe (maks 5 skladnikow)
+2. System wyswietla pytanie z ilu skladnikow chcesz zrobic dana potrawe (maks 5 skladników)
 3. Klient podaje ze chce stworzyc potwrawe z 5 skladnikow
 4. System prosi o podanie skladnikow.
-5. Klient podaje po enterze kazdy ze skladnikow Płatki owsiane
+5. Klient podaje po enterze kazdy ze skladnikow: płatki owsiane
 6. System weryfkuje czy dany produkt jest w systemie. Daje OK.
-7. Klient podaje po enterze kazdy ze skladnikow mleko
+7. Klient podaje po enterze kazdy ze skladnikow: mleko
 8. System weryfkuje czy dany produkt jest w systemie. Daje OK.
-9. Klient podaje po enterze kazdy ze skladnikow banan
+9. Klient podaje po enterze kazdy ze skladnikow: banan
 10. System weryfkuje czy dany produkt jest w systemie. Daje OK.
-11. Klient podaje po enterze kazdy ze skladnikow maslo
+11. Klient podaje po enterze kazdy ze skladnikow: maslo
 12. System weryfkuje czy dany produkt jest w systemie. Daje OK.
-13. Klient podaje po enterze kazdy ze skladnikow chia seeds
+13. Klient podaje po enterze kazdy ze skladnikow chia: seeds.
 14. System weryfkuje czy dany produkt jest w systemie. Daje OK.
 15. System podaje owsianke jako danie ktore mozna zrobic.
 
