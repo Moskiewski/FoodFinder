@@ -1,14 +1,14 @@
 package pl.foodfinder;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class FoodFinderConsoleApplication {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(args));
-        RecipeCreator recipeCreator = new RecipeCreator();
-        Recipe recipe = recipeCreator.createRecipe(List.of(args));
-        System.out.println(recipe.getName());
+        // taking ingr from input stream
+       RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
+       List<String> input = List.of("Jagody", "Jogurt", "Maka", "Flax", "Woda");
+       recipeApplicationStarter.start(input);
+
 
     }
 }

@@ -12,14 +12,18 @@ public class FoodFinderApplicationTest {
     void shouldReturnRecipeWhenUserGaveFiveCorrectIngredients() {
 
         //given
-        RecipeCreator recipeCreator = new RecipeCreator();
+
+        RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
         List<String> ingredients = List.of("Banan", "Catkin owsiane", "Chia", "Masło orzechowe", "Mleko");
 
         //when
-        Recipe recipe = recipeCreator.createRecipe(ingredients);
+
+        ApplicationResponse applicationResponse = recipeApplicationStarter.start(ingredients);
 
         //then
-        assertThat(recipe.getName()).isEqualTo("oatmeal");
+        assertThat(applicationResponse.getRecipe().getName()).isEqualTo("oatmeal");
+        assertThat(applicationResponse.getMessage()).isEqualTo("You have created recipe");
+
 
     }
 
@@ -27,26 +31,40 @@ public class FoodFinderApplicationTest {
     void shouldReturnRecipeWhenUserGaveFiveCorrectIngredientsVersionTwo() {
 
         //given
-        RecipeCreator recipeCreator = new RecipeCreator();
+
+        RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
         List<String> ingredients = List.of("Jagody", "Jogurt", "Maka", "Flax", "Woda");
 
         //when
-        Recipe recipe = recipeCreator.createRecipe(ingredients);
+
+        ApplicationResponse applicationResponse = recipeApplicationStarter.start(ingredients);
 
         //then
-        assertThat(recipe.getName()).isEqualTo("budyn");
+        assertThat(applicationResponse.getRecipe().getName()).isEqualTo("budyn");
+        assertThat(applicationResponse.getMessage()).isEqualTo("You have created recipe");
 
     }
 
-//    @Test
+    //    @Test
 //    void shouldNotReturnRecipeWhenUserGaveAtLeastOneIncorrectIngredient() {
 //
 //
 //    }
 //
-//    @Test
-//    void shouldNotReturnRecipeWhenUserGaveMoreThanFiveIngredients() {
-//
-//    }
+    @Test
+    void shouldNotReturnRecipeWhenUserGaveMoreThanFiveIngredients() {
+        //given
 
+        RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
+        List<String> ingredients = List.of("Jagody", "Jogurt", "Maka", "Flax", "Woda", "Bulka tarta");
+
+        //when
+
+        ApplicationResponse applicationResponse = recipeApplicationStarter.start(ingredients);
+
+        //then
+        assertThat(applicationResponse.getRecipe()).isNull();
+        assertThat(applicationResponse.getMessage()).isEqualTo("You must give only five ingr");
+
+    }
 }

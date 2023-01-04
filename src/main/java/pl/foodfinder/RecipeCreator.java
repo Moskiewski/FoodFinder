@@ -16,7 +16,6 @@ public class RecipeCreator {
             return new Recipe("oatmeal");
         }
         return new Recipe("shakalaka");
-
     }
 }
 
