@@ -9,39 +9,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FoodFinderApplicationTest {
 
     @Test
-    void shouldReturnRecipeWhenUserGaveFiveCorrectIngredients() {
+    void shouldReturnOatmealRecipeWhenUserGaveFiveCorrectIngredients() {
 
         //given
-
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
-        List<String> ingredients = List.of("Banan", "Catkin owsiane", "Chia", "Masło orzechowe", "Mleko");
+        List<String> ingredients = List.of("Banana", "Oat cookies", "Chia Seeds", "Peanut Butter", "Milk");
 
         //when
-
         ApplicationResponse applicationResponse = recipeApplicationStarter.start(ingredients);
 
         //then
         assertThat(applicationResponse.getRecipe().getName()).isEqualTo("oatmeal");
-        assertThat(applicationResponse.getMessage()).isEqualTo("You have created recipe");
+        assertThat(applicationResponse.getMessage()).isEqualTo("You have created the recipe.");
 
 
     }
 
     @Test
-    void shouldReturnRecipeWhenUserGaveFiveCorrectIngredientsVersionTwo() {
+    void shouldReturnCustardRecipeWhenUserGaveFiveCorrectIngredientsVersionTwo() {
 
         //given
-
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
-        List<String> ingredients = List.of("Jagody", "Jogurt", "Maka", "Flax", "Woda");
+        List<String> ingredients = List.of("Blueberries", "Yoghurt", "Flour", "Flax Seeds", "Water");
 
         //when
-
         ApplicationResponse applicationResponse = recipeApplicationStarter.start(ingredients);
 
         //then
-        assertThat(applicationResponse.getRecipe().getName()).isEqualTo("budyn");
-        assertThat(applicationResponse.getMessage()).isEqualTo("You have created recipe");
+        assertThat(applicationResponse.getRecipe().getName()).isEqualTo("custard");
+        assertThat(applicationResponse.getMessage()).isEqualTo("You have created the recipe.");
 
     }
 
@@ -53,18 +49,17 @@ public class FoodFinderApplicationTest {
 //
     @Test
     void shouldNotReturnRecipeWhenUserGaveMoreThanFiveIngredients() {
-        //given
 
+        //given
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
-        List<String> ingredients = List.of("Jagody", "Jogurt", "Maka", "Flax", "Woda", "Bulka tarta");
+        List<String> ingredients = List.of("Banana", "Oat cookies", "Chia Seeds", "Peanut Butter", "Milk", "Cheese");
 
         //when
-
         ApplicationResponse applicationResponse = recipeApplicationStarter.start(ingredients);
 
         //then
         assertThat(applicationResponse.getRecipe()).isNull();
-        assertThat(applicationResponse.getMessage()).isEqualTo("You must give only five ingr");
+        assertThat(applicationResponse.getMessage()).isEqualTo("There has to be exactly five ingredients");
 
     }
 }

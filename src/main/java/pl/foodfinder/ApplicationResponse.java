@@ -6,7 +6,6 @@ public class ApplicationResponse {
     private final String message;
 
     public ApplicationResponse(Recipe recipe, String message) {
-
         this.recipe = recipe;
         this.message = message;
     }
