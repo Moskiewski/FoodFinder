@@ -1,5 +1,8 @@
 package pl.foodfinder;
 
+import pl.foodfinder.logic.ApplicationResponse;
+import pl.foodfinder.logic.RecipeApplicationStarter;
+
 import java.util.List;
 
 public class FoodFinderConsoleApplication {

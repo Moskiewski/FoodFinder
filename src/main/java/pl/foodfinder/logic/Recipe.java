@@ -1,6 +1,6 @@
-package pl.foodfinder;
+package pl.foodfinder.logic;
 
-public class Recipe {
+class Recipe {
 
     private final String name;
 

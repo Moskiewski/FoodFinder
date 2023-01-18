@@ -1,4 +1,4 @@
-package pl.foodfinder;
+package pl.foodfinder.logic;
 
 public class ApplicationResponse {
 

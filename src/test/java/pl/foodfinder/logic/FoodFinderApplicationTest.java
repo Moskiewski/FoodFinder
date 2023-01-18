@@ -1,6 +1,8 @@
-package pl.foodfinder;
+package pl.foodfinder.logic;
 
 import org.junit.jupiter.api.Test;
+import pl.foodfinder.logic.ApplicationResponse;
+import pl.foodfinder.logic.RecipeApplicationStarter;
 
 import java.util.List;
 

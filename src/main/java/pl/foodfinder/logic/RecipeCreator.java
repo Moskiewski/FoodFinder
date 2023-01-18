@@ -1,9 +1,9 @@
-package pl.foodfinder;
+package pl.foodfinder.logic;
 
 import java.util.HashSet;
 import java.util.List;
 
-public class RecipeCreator {
+class RecipeCreator {
 
     Recipe createRecipe(List<String> ingredients) {
         List<String> ingredientsForCustard = List.of("Blueberries", "Yoghurt", "Flour", "Flax Seeds", "Water");
