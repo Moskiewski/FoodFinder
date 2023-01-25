@@ -10,6 +10,7 @@ public class FoodFinderConsoleApplication {
         // getting ingredients from input stream
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
         List<String> input = List.of("Blueberries", "Yoghurt", "Flour", "Flax Seeds", "Water");
-        ApplicationResponse start = recipeApplicationStarter.start(input);
+        ApplicationResponse start = recipeApplicationStarter.createRecipe(input);
+        recipeApplicationStarter.retrieveAllIngredients();
     }
 }
