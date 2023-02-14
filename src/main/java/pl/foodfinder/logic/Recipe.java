@@ -1,14 +1,8 @@
 package pl.foodfinder.logic;
 
-class Recipe {
+import java.util.List;
 
-    private final String name;
+record Recipe(String name, List<Ingredient> ingredients) {
 
-    public Recipe(String name) {
-        this.name = name;
-    }
 
-    public String getName() {
-        return name;
-    }
 }
