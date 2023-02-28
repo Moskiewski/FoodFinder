@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pl.foodfinder.logic.AllIngredientsDto;
-import pl.foodfinder.logic.ApplicationResponse;
-import pl.foodfinder.logic.RecipeApplicationStarter;
+import pl.foodfinder.logic.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class RecipeRestController {
@@ -17,7 +16,10 @@ public class RecipeRestController {
     @PostMapping("/ingredients")
     public ResponseEntity<ApplicationResponse> createRecipe(@RequestBody IngredientsRequestDto ingredientsRequestDto) {
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
-        List<String> ingredients = ingredientsRequestDto.getIngredients();
+        List<Ingredient> ingredients = ingredientsRequestDto.getIngredients()
+                .stream()
+                .map(ingredientString -> new Ingredient(ingredientString))
+                .collect(Collectors.toList());
         ApplicationResponse response = recipeApplicationStarter.createRecipe(ingredients);
         return ResponseEntity.ok(response);
     }
@@ -29,7 +31,11 @@ public class RecipeRestController {
         return ResponseEntity.ok(response);
     }
 
-    // potrzenujemy nowy endpoint
+    @GetMapping("/recipes")
+    public ResponseEntity<AllRecipesDto> retrieveAllRecipes() {
+        RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
+        AllRecipesDto response = recipeApplicationStarter.retrieveAllRecipes();
+        return ResponseEntity.ok(response);
 
-
+    }
 }

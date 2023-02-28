@@ -1,27 +1,33 @@
 package pl.foodfinder.logic;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
 class RecipeCreator {
+    private List<Recipe> recipesDataBase;
 
-    List<String> ingredientsForCustard = List.of("Blueberries", "Yoghurt", "Flour", "Flax Seeds", "Water");
-    List<String> ingredientsForOatmeal = List.of("Banana", "Oat cookies", "Chia Seeds", "Peanut Butter", "Milk");
-
-    public List<Recipe> retrieveAllRecipes () {
-        return List.of(new Recipe("custard"), new Recipe("oatmeal"));
+    public RecipeCreator(List<Recipe> recipesDataBase) {
+        this.recipesDataBase = recipesDataBase;
     }
 
-    Recipe createRecipe(List<String> ingredients) {
+//    List<Ingredient> ingredientsForCustard = List.of(new Ingredient("Blueberries"), new Ingredient("Yoghurt"), new Ingredient("Flour"), new Ingredient("Flax Seeds"), new Ingredient("Water"));
+//    List<Ingredient> ingredientsForOatmeal = List.of(new Ingredient("Banana"), new Ingredient("Oat cookies"), new Ingredient("Chia Seeds"), new Ingredient("Peanut Butter"), new Ingredient("Milk"));
 
-        HashSet<String> ingredientsWithoutDuplicates = new HashSet<>(ingredients);
+    public List<Recipe> retrieveAllRecipes() {
+        return recipesDataBase;
+    }
+
+    Recipe createRecipe(List<Ingredient> ingredients) {
+        HashSet<Ingredient> ingredientsWithoutDuplicates = new HashSet<>(ingredients);
         if (ingredientsWithoutDuplicates.containsAll(ingredientsForCustard)) {
-            return new Recipe("custard");
+            // podzialac na streamach
+            return new Recipe("custard", ingredientsForCustard);
         }
         if (ingredientsWithoutDuplicates.containsAll(ingredientsForOatmeal)) {
-            return new Recipe("oatmeal");
+            return new Recipe("oatmeal", ingredientsForOatmeal);
         }
-        return new Recipe("shakalaka");
+        return new Recipe("shakalaka", Collections.emptyList());
     }
 }
 

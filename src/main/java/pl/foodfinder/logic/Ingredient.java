@@ -1,6 +1,6 @@
 package pl.foodfinder.logic;
 
-record Ingredient(String name) {
+public record Ingredient(String name) {
 
 
 
