@@ -18,9 +18,21 @@ public class RecipeRestController {
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
         List<Ingredient> ingredients = ingredientsRequestDto.getIngredients()
                 .stream()
-                .map(ingredientString -> new Ingredient(ingredientString))
+                .map(Ingredient::new)
                 .collect(Collectors.toList());
-        ApplicationResponse response = recipeApplicationStarter.createRecipe(ingredients);
+        ApplicationResponse response = recipeApplicationStarter.findRecipe(ingredients);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/recipes")
+    public ResponseEntity<ApplicationResponse> addRecipe (@RequestBody AddRecipeRequestDto recipeRequestDto) {
+        RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
+        List<Ingredient> ingredients = recipeRequestDto.ingredients()
+                .stream()
+                .map(Ingredient::new)
+                .collect(Collectors.toList());
+        String recipeName = recipeRequestDto.recipeName();
+        ApplicationResponse response = recipeApplicationStarter.addRecipe(recipeName, ingredients);
         return ResponseEntity.ok(response);
     }
 
@@ -36,6 +48,7 @@ public class RecipeRestController {
         RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
         AllRecipesDto response = recipeApplicationStarter.retrieveAllRecipes();
         return ResponseEntity.ok(response);
-
     }
+
+
 }

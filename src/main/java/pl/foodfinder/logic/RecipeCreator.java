@@ -5,12 +5,24 @@ import java.util.HashSet;
 import java.util.List;
 
 class RecipeCreator {
-    private List<Recipe> recipesDataBase;
+    private final List<Recipe> recipesDataBase;
 
     public RecipeCreator(List<Recipe> recipesDataBase) {
         this.recipesDataBase = recipesDataBase;
     }
 
+    Recipe addRecipe(String recipeName, List<Ingredient> ingredients) {
+        for (Recipe recipe : recipesDataBase) {
+            if (recipe.name().equals(recipeName)) {
+                System.out.println("Sorry, recipe already exists in database.");
+                return null;
+            }
+        }
+        Recipe recipe = new Recipe(recipeName, ingredients);
+        recipesDataBase.add(recipe);
+        System.out.println("Success, new recipe added to database.");
+        return recipe;
+    }
 //    List<Ingredient> ingredientsForCustard = List.of(new Ingredient("Blueberries"), new Ingredient("Yoghurt"), new Ingredient("Flour"), new Ingredient("Flax Seeds"), new Ingredient("Water"));
 //    List<Ingredient> ingredientsForOatmeal = List.of(new Ingredient("Banana"), new Ingredient("Oat cookies"), new Ingredient("Chia Seeds"), new Ingredient("Peanut Butter"), new Ingredient("Milk"));
 
@@ -18,14 +30,13 @@ class RecipeCreator {
         return recipesDataBase;
     }
 
-    Recipe createRecipe(List<Ingredient> ingredients) {
-        HashSet<Ingredient> ingredientsWithoutDuplicates = new HashSet<>(ingredients);
-        if (ingredientsWithoutDuplicates.containsAll(ingredientsForCustard)) {
-            // podzialac na streamach
-            return new Recipe("custard", ingredientsForCustard);
-        }
-        if (ingredientsWithoutDuplicates.containsAll(ingredientsForOatmeal)) {
-            return new Recipe("oatmeal", ingredientsForOatmeal);
+    Recipe findRecipe(List<Ingredient> ingredientsFromUser) {
+        HashSet<Ingredient> ingredientsWithoutDuplicates = new HashSet<>(ingredientsFromUser);
+        for (Recipe recipe : recipesDataBase) {
+            List<Ingredient> databaseIngredients = recipe.ingredients();
+            if (databaseIngredients.containsAll(ingredientsFromUser)) {
+                return recipe;
+            }
         }
         return new Recipe("shakalaka", Collections.emptyList());
     }
