@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class RecipeApplicationStarter {
+
     Recipe custardRecipe = new Recipe("custard", List.of(
             new Ingredient("Blueberries"),
             new Ingredient("Yoghurt"),
@@ -17,7 +18,13 @@ public class RecipeApplicationStarter {
             new Ingredient("Flax Seeds"),
             new Ingredient("Chia Seeds")));
 
-    List<Recipe> recipesDataBase = List.of(custardRecipe, oatmealRecipe);
+    List<Recipe> recipesDataBase = new ArrayList<>();
+    RecipeCreator recipeCreator = new RecipeCreator(recipesDataBase);
+
+    public RecipeApplicationStarter() {
+        recipesDataBase.add(oatmealRecipe);
+        recipesDataBase.add(custardRecipe);
+    }
 
     public ApplicationResponse findRecipe(List<Ingredient> ingredients) {
         if (ingredients.size() != 5) {
@@ -25,7 +32,7 @@ public class RecipeApplicationStarter {
         }
         // validate
         // create recipe
-        RecipeCreator recipeCreator = new RecipeCreator(recipesDataBase);
+
         Recipe recipe = recipeCreator.findRecipe(ingredients);
         return new ApplicationResponse(recipe, "You have created the recipe.");
     }
@@ -39,13 +46,17 @@ public class RecipeApplicationStarter {
 
     public AllRecipesDto retrieveAllRecipes() {
         Map<String, List<Ingredient>> recipesWithIngredients = new HashMap<>();
-        recipesWithIngredients.put(oatmealRecipe.name(), oatmealRecipe.ingredients());
-        recipesWithIngredients.put(custardRecipe.name(), custardRecipe.ingredients());
+        for (Recipe recipe : recipesDataBase) {
+            recipesWithIngredients.put(recipe.name(), recipe.ingredients());
+        }
+//        recipesWithIngredients.put(oatmealRecipe.name(), oatmealRecipe.ingredients());
+//        recipesWithIngredients.put(custardRecipe.name(), custardRecipe.ingredients());
         return new AllRecipesDto(recipesWithIngredients);
 
     }
 
     public ApplicationResponse addRecipe(String recipeName, List<Ingredient> ingredients) {
+        return new ApplicationResponse(recipeName,ingredients);
 
     }
 }
