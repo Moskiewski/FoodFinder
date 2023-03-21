@@ -1,5 +1,6 @@
 package pl.foodfinder.logic;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -32,11 +33,14 @@ class RecipeCreator {
 
     Recipe findRecipe(List<Ingredient> ingredientsFromUser) {
         HashSet<Ingredient> ingredientsWithoutDuplicates = new HashSet<>(ingredientsFromUser);
+        List<Recipe> recipesList = new ArrayList<>();
         for (Recipe recipe : recipesDataBase) {
             List<Ingredient> databaseIngredients = recipe.ingredients();
-            if (databaseIngredients.containsAll(ingredientsFromUser)) {
-                return recipe;
+            if (databaseIngredients.containsAll(ingredientsWithoutDuplicates)) {
+                recipesList.add(recipe);
+                // do zwrocenia lista przepisow
             }
+
         }
         return new Recipe("shakalaka", Collections.emptyList());
     }

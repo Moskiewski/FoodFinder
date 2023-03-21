@@ -5,7 +5,7 @@ import pl.foodfinder.logic.RecipeApplicationStarter;
 
 import java.util.List;
 
-//public class FoodFinderConsoleApplication {
+public class FoodFinderConsoleApplication {
 //    public static void main(String[] args) {
 //        // getting ingredients from input stream
 //        RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
@@ -14,3 +14,4 @@ import java.util.List;
 //        recipeApplicationStarter.retrieveAllIngredients();
 //    }
 //}
+}

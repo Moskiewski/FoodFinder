@@ -11,6 +11,7 @@ public class RecipeApplicationStarter {
             new Ingredient("Flour"),
             new Ingredient("Flax Seeds"),
             new Ingredient("Water")));
+
     Recipe oatmealRecipe = new Recipe("oatmeal", List.of(
             new Ingredient("Milk"),
             new Ingredient("Oats"),
@@ -49,15 +50,16 @@ public class RecipeApplicationStarter {
         for (Recipe recipe : recipesDataBase) {
             recipesWithIngredients.put(recipe.name(), recipe.ingredients());
         }
-//        recipesWithIngredients.put(oatmealRecipe.name(), oatmealRecipe.ingredients());
-//        recipesWithIngredients.put(custardRecipe.name(), custardRecipe.ingredients());
         return new AllRecipesDto(recipesWithIngredients);
 
     }
 
     public ApplicationResponse addRecipe(String recipeName, List<Ingredient> ingredients) {
-        return new ApplicationResponse(recipeName,ingredients);
-
+        Recipe recipe = recipeCreator.addRecipe(recipeName, ingredients);
+        if (recipe == null) {
+            return new ApplicationResponse(null, "You weren't able to create recipe");
+        }
+        return new ApplicationResponse(recipe, "You have successfully added new recipe to the data base");
     }
 }
 

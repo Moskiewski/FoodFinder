@@ -12,9 +12,8 @@ import java.util.stream.Collectors;
 
 @RestController
 public class RecipeRestController {
-
     RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
-    //
+
     @PostMapping("/ingredients")
     public ResponseEntity<ApplicationResponse> createRecipe(@RequestBody IngredientsRequestDto ingredientsRequestDto) {
         List<Ingredient> ingredients = ingredientsRequestDto.getIngredients()
