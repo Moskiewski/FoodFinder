@@ -1,8 +1,11 @@
 package pl.foodfinder.logic;
 
+import org.springframework.stereotype.Component;
+
 import java.util.*;
 import java.util.stream.Stream;
 
+@Component
 public class RecipeApplicationStarter {
 
     Recipe custardRecipe = new Recipe("custard", List.of(

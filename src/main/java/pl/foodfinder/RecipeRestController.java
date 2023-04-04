@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 
 @RestController
 public class RecipeRestController {
-    RecipeApplicationStarter recipeApplicationStarter = new RecipeApplicationStarter();
+    private final RecipeApplicationStarter recipeApplicationStarter;
+
+    public RecipeRestController(RecipeApplicationStarter recipeApplicationStarter) {
+        this.recipeApplicationStarter = recipeApplicationStarter;
+    }
 
     @PostMapping("/ingredients")
     public ResponseEntity<ApplicationResponse> createRecipe(@RequestBody IngredientsRequestDto ingredientsRequestDto) {
@@ -25,7 +29,7 @@ public class RecipeRestController {
     }
 
     @PostMapping("/recipes")
-    public ResponseEntity<ApplicationResponse> addRecipe (@RequestBody AddRecipeRequestDto recipeRequestDto) {
+    public ResponseEntity<ApplicationResponse> addRecipe(@RequestBody AddRecipeRequestDto recipeRequestDto) {
         List<Ingredient> ingredients = recipeRequestDto.ingredients()
                 .stream()
                 .map(Ingredient::new)
@@ -46,4 +50,5 @@ public class RecipeRestController {
         AllRecipesDto response = recipeApplicationStarter.retrieveAllRecipes();
         return ResponseEntity.ok(response);
     }
+
 }
